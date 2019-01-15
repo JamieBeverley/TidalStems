@@ -77,11 +77,28 @@ rect x y w h = rectX x # rectY y # rectW w # rectH h
 
 ellipse x y w h = ellipseX x # ellipseY y # ellipseW w # ellipseH h
 
+(arcX,arcX_p) = pF "arcX" Nothing
+(arcY,arcY_p) = pF "arcY" Nothing
+(arcW,arcW_p) = pF "arcW" Nothing
+(arcH,arcH_p) = pF "arcH" Nothing
+(arcStart,artStart_p) = pF "arcStart" Nothing
+(arcStop,artStop_p) = pF "arcStop" Nothing
+
+arc x y w h start stop = arcX x # arcY y # arcW w # arcH h # arcStart start # arcStop stop
+
+
+
 setOrbitColorR orbit = fst $ pF ("colorR" ++ show orbit) Nothing
 setOrbitColorG orbit = fst $ pF ("colorG" ++ show orbit) Nothing
 setOrbitColorB orbit = fst $ pF ("colorB" ++ show orbit) Nothing
-
 setOrbitColor orbit r g b = setOrbitColorR orbit r # setOrbitColorG orbit g # setOrbitColorB orbit b
+
+setOrbitRotate orbit = fst $ pF ("rotate" ++ show orbit) Nothing
+
+setOrbitTranslateX orbit = fst $ pF ("translateX" ++ show orbit) Nothing
+setOrbitTranslateY orbit = fst $ pF ("translateY" ++ show orbit) Nothing
+setOrbitTranslate orbit x y= setOrbitTranslateX orbit x # setOrbitTranslateY orbit y
+
 
 (drawOrbit, drawOrbit_p) = pI "drawOrbit" Nothing
 

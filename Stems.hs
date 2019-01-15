@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Stems where
 
-import Sound.Tidal.Context
+import Sound.Tidal.Context as T
 import Macros as M
 import Data.Map as Map (fromList,lookup)
 
@@ -9,7 +9,7 @@ type Stem = (String, ParamPattern)
 
 
 stem :: Pattern String -> ParamPattern
-stem pat = Pattern (\a-> concat $ fmap (\(a1,_,s) -> filter (\((s,_),_,_)-> isIn a1 s) $ (arc $ maybe silence id $ Map.lookup s stems) a)   (arc pat $ a))
+stem pat = Pattern (\a-> concat $ fmap (\(a1,_,s) -> filter (\((s,_),_,_)-> isIn a1 s) $ (T.arc $ maybe silence id $ Map.lookup s stems) a)   (T.arc pat $ a))
 
 
 drum_dh1 = ("drum_dh1",stut 2 0.15 0.85 $ s "kick:5 [hat:2] [kick:5,snare:2,clap:4/4] hat:4")
